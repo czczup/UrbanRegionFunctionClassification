@@ -14,7 +14,7 @@ def get_data(dataset):
     class_ids = [int(item[0].split("/")[-1].split("_")[-1].split(".")[0])-1 for item in table.values]
     data = []
     for index, filename in enumerate(filenames):
-        image = cv2.imread("../"+filename, cv2.IMREAD_COLOR)
+        image = cv2.imread(filename, cv2.IMREAD_COLOR)
         visit = np.load("../data/npy/train_visit/"+filename.split('/')[-1].split('.')[0]+".npy")
         label = class_ids[index]
         data.append([image, visit, label])

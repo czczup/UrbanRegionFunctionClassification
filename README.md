@@ -47,6 +47,8 @@ python tfrecord.py
 - data/tfrecord/train.tfrecord
 - data/tfrecord/valid.tfrecord
 
+备注：由于这里直接加载了所有数据，大约要占用5G内存。
+
 ### 1.5 训练
 ```
 python train.py
