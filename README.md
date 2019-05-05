@@ -2,13 +2,13 @@
 
 ## 简介
 
-![模型结构图](F:\深度学习\代码\Baseline\README.assets\E0C5Mq.png)
+![模型结构图](https://s2.ax1x.com/2019/05/05/E0C5Mq.png)
 
 同时使用遥感图像和访问数据两个模态，在特征层进行融合，大概能拿到0.55的准确率。
 
 PS：刚刚测试了一下，有0.57分。
 
-![tensorboard](F:\深度学习\代码\Baseline\README.assets\E0Puef.png)
+![tensorboard](https://s2.ax1x.com/2019/05/05/E0Puef.png)
 
 ## 快速起步
 ### 1.1 依赖的库
@@ -70,5 +70,5 @@ python test.py
 ```
 测试完成后在result文件夹中生成结果。
 
-![实测分数](F:\深度学习\代码\Baseline\README.assets\E0PYyq-1557036018970.png)
+![实测分数](https://s2.ax1x.com/2019/05/05/E0PYyq.png)
 
