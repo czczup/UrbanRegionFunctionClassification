@@ -16,6 +16,7 @@ pandas
 - data/test_visit/test/xxxxxx.txt
 - data/train_image/train/00x/xxxxxx_00x.jpg
 - data/train_visit/xxxxxx_00x.txt
+
 把压缩文件放在data文件夹里直接解压应该就是上面这样
 
 ### 1.3 数据转换
