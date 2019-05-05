@@ -8,6 +8,7 @@ import cv2
 
 deviceId = input("device id: ")
 os.environ["CUDA_VISIBLE_DEVICES"] = deviceId
+dirId = input("dir id: ")
 
 table = pd.read_csv("../data/valid.txt", header=None)
 filenames1 = [item[0] for item in table.values]
@@ -24,7 +25,7 @@ with sess.graph.as_default():
         var_list += [var for var in tf.global_variables() if "global_step" in var.name]
         var_list += tf.trainable_variables()
         saver = tf.train.Saver(var_list=var_list, max_to_keep=1)
-        last_file = tf.train.latest_checkpoint("../model")
+        last_file = tf.train.latest_checkpoint("../model/"+dirId)
         if last_file:
             tf.logging.info('Restoring model from {}'.format(last_file))
             saver.restore(sess, last_file)
@@ -34,7 +35,7 @@ visits = []
 
 for i in range(10000):
     image = cv2.imread("../data/test_image/test/"+str(i).zfill(6)+".jpg", cv2.IMREAD_COLOR)[0:88,0:88,:] / 255.0
-    visit = np.load("../data/npy/test_visit/"+str(i).zfill(6)+".npy")[:, :, 0:24]
+    visit = np.load("../data/npy/test_visit/"+str(i).zfill(6)+".npy")
     images.append(image)
     visits.append(visit)
 

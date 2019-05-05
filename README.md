@@ -1,7 +1,14 @@
 # 城市区域功能分类
 
 ## 简介
+
+![模型结构图](F:\深度学习\代码\Baseline\README.assets\E0C5Mq.png)
+
 同时使用遥感图像和访问数据两个模态，在特征层进行融合，大概能拿到0.55的准确率。
+
+PS：刚刚测试了一下，有0.57分。
+
+![tensorboard](F:\深度学习\代码\Baseline\README.assets\E0Puef.png)
 
 ## 快速起步
 ### 1.1 依赖的库
@@ -51,10 +58,17 @@ device id: 0
 dir id: 1001
 ```
 
+查看tensorboard：
+```
+cd model/
+tensorboard --logdir=./
+```
 
 ### 1.6 测试
 ```
 python test.py
 ```
 测试完成后在result文件夹中生成结果。
+
+![实测分数](F:\深度学习\代码\Baseline\README.assets\E0PYyq-1557036018970.png)
 

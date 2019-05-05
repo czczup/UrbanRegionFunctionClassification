@@ -16,7 +16,9 @@ class MultiModal(object):
         self.training = tf.placeholder(tf.bool)
 
         self.output_image = self.image_network(self.image)
+        print(self.output_image)
         self.output_visit = self.visit_network(self.visit)
+        print(self.output_visit)
         self.output = tf.concat([self.output_image, self.output_visit], axis=1)
         self.prediction = tf.layers.dense(self.output, units=9)
 

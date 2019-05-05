@@ -15,7 +15,7 @@ def get_data(dataset):
     data = []
     for index, filename in enumerate(filenames):
         image = cv2.imread("../"+filename, cv2.IMREAD_COLOR)
-        visit = np.load("../data/npy/train_visit/"+filename.split('/')[-1].split('.')[0]+".npy")[:, :, 0:24]
+        visit = np.load("../data/npy/train_visit/"+filename.split('/')[-1].split('.')[0]+".npy")
         label = class_ids[index]
         data.append([image, visit, label])
     random.seed(0)
