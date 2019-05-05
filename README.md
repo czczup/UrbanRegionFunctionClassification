@@ -24,7 +24,7 @@ pandas
 划分后的文件名记录在data/train.txt和data/valid.txt中。
 
 ### 1.3 数据转换
-把visit数据转换为7*26*24的矩阵，这一步耗时比较长，大概要一个小时。
+把visit数据转换为7x26x24的矩阵，这一步耗时比较长，大概要一个小时。
 ```
 python visit2array.py
 ```
