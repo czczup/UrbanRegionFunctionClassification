@@ -19,8 +19,8 @@ def read_and_decode_train(filename):
     image = tf.random_crop(image, [88, 88, 3])
     image = tf.image.random_flip_left_right(image)
     image = tf.image.random_flip_up_down(image)
-    image = tf.image.random_brightness(image, max_delta=0.1)  # 随机亮度调整
-    image = tf.image.random_contrast(image, lower=0.8, upper=1.2)  # 随机对比度
+    # image = tf.image.random_brightness(image, max_delta=0.1)  # 随机亮度调整
+    # image = tf.image.random_contrast(image, lower=0.8, upper=1.2)  # 随机对比度
     image = tf.cast(image, tf.float32) / 255.0
 
     visit = tf.decode_raw(features['visit'], tf.float64)
@@ -54,9 +54,9 @@ def read_and_decode_valid(filename):
 
 def load_training_set():
     with tf.name_scope('input_train'):
-        image_train, visit_train, label_train = read_and_decode_train("../data/tfrecord/train_multimodal.tfrecord")
+        image_train, visit_train, label_train = read_and_decode_train("../data/tfrecord/train.tfrecord")
         image_batch_train, visit_batch_train, label_batch_train = tf.train.shuffle_batch(
-            [image_train, visit_train, label_train], batch_size=batch_size, capacity=10240, min_after_dequeue=5120, num_threads=4
+            [image_train, visit_train, label_train], batch_size=batch_size, capacity=2048, min_after_dequeue=2000, num_threads=4
         )
     return image_batch_train, visit_batch_train, label_batch_train
 
@@ -64,9 +64,9 @@ def load_training_set():
 def load_valid_set():
     # Load Testing set.
     with tf.name_scope('input_valid'):
-        image_valid, visit_valid, label_valid = read_and_decode_valid("../data/tfrecord/valid_multimodal.tfrecord")
+        image_valid, visit_valid, label_valid = read_and_decode_valid("../data/tfrecord/valid.tfrecord")
         image_batch_valid, visit_batch_valid, label_batch_valid = tf.train.shuffle_batch(
-            [image_valid, visit_valid, label_valid], batch_size=batch_size, capacity=10240, min_after_dequeue=5120, num_threads=4
+            [image_valid, visit_valid, label_valid], batch_size=batch_size, capacity=2048, min_after_dequeue=2000, num_threads=4
         )
     return image_batch_valid, visit_batch_valid, label_batch_valid
 

@@ -44,7 +44,7 @@ def image_to_tfexample(data, visit, label):
 
 def _convert_dataset(data, tfrecord_path, dataset):
     """ Convert data to TFRecord format. """
-    output_filename = os.path.join(tfrecord_path, dataset+"_multimodal.tfrecord")
+    output_filename = os.path.join(tfrecord_path, dataset+".tfrecord")
     tfrecord_writer = tf.python_io.TFRecordWriter(output_filename)
     length = len(data)
     for index, item in enumerate(data):
@@ -60,7 +60,9 @@ def _convert_dataset(data, tfrecord_path, dataset):
 
 
 if __name__ == '__main__':
-
+    if not os.path.exists("../data/tfrecord/"):
+        os.makedirs("../data/tfrecord/")
+        
     data = get_data("train_oversampling.txt")
     _convert_dataset(data, "../data/tfrecord/", "train")
 

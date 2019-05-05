@@ -47,6 +47,8 @@ for i in range(10):
                                      model.training: False}))
     print(i)
 
+if not os.path.exists("../result/"):
+    os.mkdir("../result/")
 f = open("../result/result.txt", "w+")
 for index, prediction in enumerate(predictions):
     f.write("%s \t %03d\n"%(str(index).zfill(6), prediction+1))
