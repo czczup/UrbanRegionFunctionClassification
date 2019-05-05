@@ -40,6 +40,13 @@ python tfrecord.py
 ```
 python train.py
 ```
+为了调参方便，每组实验存在不同的文件夹里。
+需要输入显卡的编号和文件夹名称，比如：
+```
+device id: 0
+dir id: 1001
+```
+
 
 ### 1.6 测试
 ```

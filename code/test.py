@@ -2,12 +2,12 @@ from model import MultiModal
 import tensorflow as tf
 import numpy as np
 import pandas as pd
-import sys
 import os
 import cv2
 
-# 设置你的GPU
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+
+deviceId = input("device id: ")
+os.environ["CUDA_VISIBLE_DEVICES"] = deviceId
 
 table = pd.read_csv("../data/valid.txt", header=None)
 filenames1 = [item[0] for item in table.values]

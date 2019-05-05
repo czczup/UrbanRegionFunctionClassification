@@ -139,9 +139,9 @@ def train(model):
 
 
 if __name__ == '__main__':
-    deviceId = input("please input device id (0-7): ")
+    deviceId = input("device id: ")
     os.environ["CUDA_VISIBLE_DEVICES"] = deviceId
-    dirId = input("please input dir id: ")
+    dirId = input("dir id: ")
     model = MultiModal()
     batch_size = model.batch_size
     train(model)
