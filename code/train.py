@@ -16,9 +16,9 @@ def read_and_decode_train(filename):
                                        })  # return image and label
     image = tf.decode_raw(features['data'], tf.uint8)
     image = tf.reshape(image, [100, 100, 3])
-    image = tf.random_crop(image, [88, 88, 3])
-    image = tf.image.random_flip_left_right(image)
-    image = tf.image.random_flip_up_down(image)
+    image = tf.random_crop(image, [88, 88, 3]) # 随机裁剪
+    image = tf.image.random_flip_left_right(image) # 随机左右翻转
+    image = tf.image.random_flip_up_down(image) # 随机上下翻转
     # image = tf.image.random_brightness(image, max_delta=0.1)  # 随机亮度调整
     # image = tf.image.random_contrast(image, lower=0.8, upper=1.2)  # 随机对比度
     image = tf.cast(image, tf.float32) / 255.0
@@ -42,7 +42,7 @@ def read_and_decode_valid(filename):
                                        })  # return image and label
     image = tf.decode_raw(features['data'], tf.uint8)
     image = tf.reshape(image, [100, 100, 3])
-    image = tf.random_crop(image, [88, 88, 3])
+    image = tf.random_crop(image, [88, 88, 3]) # 随机裁剪
     image = tf.cast(image, tf.float32)/255.0
 
     visit = tf.decode_raw(features['visit'], tf.float64)
@@ -62,7 +62,6 @@ def load_training_set():
 
 
 def load_valid_set():
-    # Load Testing set.
     with tf.name_scope('input_valid'):
         image_valid, visit_valid, label_valid = read_and_decode_valid("../data/tfrecord/valid.tfrecord")
         image_batch_valid, visit_batch_valid, label_batch_valid = tf.train.shuffle_batch(

@@ -5,12 +5,15 @@ import datetime
 import pandas as pd
 import os
 
-
+# 用字典查询代替类型转换，可以减少一部分计算时间
 date2position = {}
 datestr2dateint = {}
 str2int = {}
 for i in range(24):
     str2int[str(i).zfill(2)] = i
+
+# 访问记录内的时间从2018年10月1日起，共182天
+# 将日期按日历排列
 for i in range(182):
     date = datetime.date(day=1, month=10, year=2018)+datetime.timedelta(days=i)
     date_int = int(date.__str__().replace("-", ""))
@@ -26,8 +29,12 @@ def visit2array(table):
         for item in string.split(','):
             temp.append([item[0:8], item[9:].split("|")])
         for date, visit_lst in temp:
+            # x - 第几周
+            # y - 第几天
+            # z - 几点钟
+            # value - 到访的总人数
             x, y = date2position[datestr2dateint[date]]
-            for visit in visit_lst:
+            for visit in visit_lst: # 统计到访的总人数
                 init[x][y][str2int[visit]] += 1
     return init
 

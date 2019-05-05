@@ -5,15 +5,13 @@ import pandas as pd
 import os
 import cv2
 
-
+# 选择gpu设备
 deviceId = input("device id: ")
 os.environ["CUDA_VISIBLE_DEVICES"] = deviceId
+# 选择文件夹
 dirId = input("dir id: ")
 
-table = pd.read_csv("../data/valid.txt", header=None)
-filenames1 = [item[0] for item in table.values]
-filenames2 = [item[0].split('/')[-1].split('.')[0] for item in table.values]
-
+# 加载训练好的模型
 graph = tf.Graph()
 sess = tf.InteractiveSession(graph=graph)
 with sess.graph.as_default():
@@ -33,6 +31,7 @@ with sess.graph.as_default():
 images = []
 visits = []
 
+# 载入所有测试数据
 for i in range(10000):
     image = cv2.imread("../data/test_image/test/"+str(i).zfill(6)+".jpg", cv2.IMREAD_COLOR)[0:88,0:88,:] / 255.0
     visit = np.load("../data/npy/test_visit/"+str(i).zfill(6)+".npy")
@@ -41,6 +40,7 @@ for i in range(10000):
 
 predictions = []
 
+# 每次测试1000条数据，如果显存不够可以改小一些
 for i in range(10):
     predictions.extend(sess.run(tf.argmax(model.prediction, 1),
                           feed_dict={model.image: images[i*1000:i*1000+1000],
@@ -48,8 +48,11 @@ for i in range(10):
                                      model.training: False}))
     print(i)
 
+# 新建文件夹
 if not os.path.exists("../result/"):
     os.mkdir("../result/")
+
+# 将预测结果写入文件
 f = open("../result/result.txt", "w+")
 for index, prediction in enumerate(predictions):
     f.write("%s \t %03d\n"%(str(index).zfill(6), prediction+1))
