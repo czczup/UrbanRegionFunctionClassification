@@ -16,6 +16,9 @@ opencv-python
 pandas 
 ```
 ### 1.2 数据准备
+
+数据集下载：[link](https://aistudio.baidu.com/aistudio/projectDetail/176495)
+
 将数据放在data文件夹下，如下所示：
 - data/test_image/test/xxxxxx.jpg
 - data/test_visit/test/xxxxxx.txt
